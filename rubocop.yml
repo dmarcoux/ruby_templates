@@ -1,0 +1,98 @@
+# This file only lists settings that are different from the default ones as all configurations inherit from default options linked below
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+AllCops:
+  # Cop names are displayed in offense messages.
+  DisplayCopNames: true
+  # Style guide URLs are displayed in offense messages.
+  DisplayStyleGuide: true
+
+############################## DISABLED ##############################
+
+Style/AlignArray:
+  Description: Align the elements of an array literal if they span more than one line.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#align-multiline-arrays'
+  Enabled: false
+
+# Align the elements of a hash literal if they span more than one line.
+Style/AlignHash:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Description: 'Enforce braces style around hash parameters.'
+  Enabled: false
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/IndentHash:
+  Description: 'Checks the indentation of the first key in a hash literal.'
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+############################## ENABLED ##############################
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 10
+
+Metrics/ParameterLists:
+  Max: 4
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/AlignParameters:
+  # Alignment of parameters in multi-line method calls.
+  #
+  # The `with_first_parameter` style aligns the following lines along the same
+  # column as the first parameter.
+  #
+  #     method_call(a,
+  #                 b)
+  #
+  # The `with_fixed_indentation` style aligns the following lines with one
+  # level of indentation relative to the start of the line with the method call.
+  #
+  #     method_call(a,
+  #       b)
+  EnforcedStyle: with_fixed_indentation
+  SupportedStyles:
+    - with_first_parameter
+    - with_fixed_indentation
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+  FunctionalMethods:
+    - let
+    - let!
+    - map
+    - subject
+    - watch
+  IgnoredMethods:
+    - lambda
+    - proc
+    - it
+    - its
+    - xit
+    - specify
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/SpaceAroundOperators:
+  AllowForAlignment: true
