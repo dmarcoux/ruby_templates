@@ -9,13 +9,17 @@ AllCops:
 
 ############################## DISABLED ##############################
 
-Style/AlignArray:
+Layout/AlignArray:
   Description: Align the elements of an array literal if they span more than one line.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#align-multiline-arrays'
   Enabled: false
 
 # Align the elements of a hash literal if they span more than one line.
-Style/AlignHash:
+Layout/AlignHash:
+  Enabled: false
+
+Layout/IndentHash:
+  Description: 'Checks the indentation of the first key in a hash literal.'
   Enabled: false
 
 Style/AsciiComments:
@@ -29,8 +33,9 @@ Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
   Enabled: false
 
-Style/IndentHash:
-  Description: 'Checks the indentation of the first key in a hash literal.'
+# Not production-ready as many gems will be causing errors when using this
+Style/FrozenStringLiteralComment:
+  Description: 'Add the comment `# frozen_string_literal: true` to the top of files to enable frozen string literals.'
   Enabled: false
 
 Style/Lambda:
@@ -41,19 +46,7 @@ Style/NumericLiterals:
 
 ############################## ENABLED ##############################
 
-Metrics/LineLength:
-  Max: 120
-
-Metrics/MethodLength:
-  Max: 10
-
-Metrics/ParameterLists:
-  Max: 4
-
-Style/Alias:
-  EnforcedStyle: prefer_alias_method
-
-Style/AlignParameters:
+Layout/AlignParameters:
   # Alignment of parameters in multi-line method calls.
   #
   # The `with_first_parameter` style aligns the following lines along the same
@@ -72,6 +65,24 @@ Style/AlignParameters:
     - with_first_parameter
     - with_fixed_indentation
 
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceAroundOperators:
+  AllowForAlignment: true
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 10
+
+Metrics/ParameterLists:
+  Max: 4
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
 Style/BlockDelimiters:
   EnforcedStyle: semantic
   FunctionalMethods:
@@ -88,11 +99,8 @@ Style/BlockDelimiters:
     - xit
     - specify
 
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
 Style/SignalException:
   EnforcedStyle: semantic
 
-Style/SpaceAroundOperators:
-  AllowForAlignment: true
+Style/SymbolArray:
+  EnforcedStyle: brackets
