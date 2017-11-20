@@ -1,5 +1,9 @@
 # This file only lists settings that are different from the default ones as all configurations inherit from default options linked below
 # https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+#
+# Import in other projects with the following lines:
+#inherit_from:
+#  - https://raw.githubusercontent.com/dmarcoux/ruby_templates/master/.rubocop.yml
 
 AllCops:
   # Cop names are displayed in offense messages.
