@@ -6,6 +6,9 @@ AllCops:
   DisplayCopNames: true
   # Style guide URLs are displayed in offense messages.
   DisplayStyleGuide: true
+  Exclude:
+    - 'tmp/**/*'
+    - 'vendor/**/*'
 
 ############################## DISABLED ##############################
 
