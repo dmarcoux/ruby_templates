@@ -37,3 +37,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore locally cached Rubocop remote config
+.rubocop-http*
