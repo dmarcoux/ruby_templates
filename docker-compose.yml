@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  rails:
+    build: .
+    depends_on:
+      - database
+    environment:
+      - RAILS_PORT=80
+    ports:
+      - '80:80'
+    volumes:
+      - .:/app
+      - gems:/gems # Use cache from gems volume
+  database:
+    environment:
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_DB=database_dev
+    image: postgres:10.2
+    ports:
+      - '5432:5432'
+volumes:
+  # Cache gems from 'bundle install'
+  gems:
