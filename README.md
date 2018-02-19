@@ -7,6 +7,10 @@ Templates for common files/configs I use in Ruby projects.
 Configured with `.rubocop.yml` and to be imported into other projects as
 explained in the file itself.
 
+### setup_example_files.sh
+
+Quickly setup example files under `config/` by running `./setup_example_files.sh`
+
 ### Docker and Docker Compose
 
 Minimal setup for a *Rails* application with the following features:
@@ -21,5 +25,4 @@ Minimal setup for a *Rails* application with the following features:
 
 - Add skeleton *Rails* app
 - Add more services in *Docker Compose* setup (redis, etc...)
-- Add setup script for example files (database.yml.example, etc...)
 - Scale *Docker Compose* setup (use `scale` for `rails` service)
