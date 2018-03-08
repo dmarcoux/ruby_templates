@@ -1,11 +1,13 @@
 version: '3.4'
 services:
+  # Usage: docker-compose up rails
+  # Runs a rails server, access it at localhost:RAILS_PORT (the value of the environment variable RAILS_PORT is below)
   rails:
     build: .
     depends_on:
       - database
     environment:
-      - RAILS_PORT=80
+      - RAILS_PORT=80 # Do not forget to change ports below when changing this
     ports:
       - '80:80'
     volumes:
