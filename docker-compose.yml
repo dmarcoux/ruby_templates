@@ -33,6 +33,17 @@ services:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
 
+  # Usage: docker-compose up migrations
+  # Create and migrate the database for development and only load the schema for test
+  migrations:
+    build: .
+    command: bash -c "(bundle check || bundle install) && bundle exec rake db:create db:migrate && RAILS_ENV=test bundle exec rake db:test:load"
+    depends_on:
+      - database
+    volumes:
+      - .:/app # Same as $WORKDIR from Dockerfile
+      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
+
   # Usage: docker-compose up database
   # Other services depend on this. It shouldn't be run by itself
   database:
