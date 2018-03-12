@@ -13,6 +13,9 @@ services:
     volumes:
       - .:/app
       - gems:/gems # Use cache from gems volume
+
+  # Usage: docker-compose up database
+  # Other services depend on this. It shouldn't be run by itself
   database:
     environment:
       - POSTGRES_USER=postgres_user
