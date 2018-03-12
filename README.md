@@ -18,8 +18,9 @@ Minimal setup for a *Rails* application with the following features:
 - *PostgreSQL* database
 
 **Usage**
-1. *Rails*: `docker-compose up rails`
-2. Terminal into *Rails* *Docker* container: `docker-compose run --rm --service-ports rails bash`
+
+Each *Docker* container has usage examples in
+[docker-compose.yml](docker-compose.yml).
 
 ### TODO
 
