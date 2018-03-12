@@ -10,8 +10,10 @@ services:
       - database
     environment:
       - RAILS_PORT=80 # Do not forget to change ports below when changing this
+      - REDIS_HOST=redis # Name of the redis service
+      - REDIS_PORT=6379 # Do not forget to change ports in redis service when changing this
     ports:
-      - '80:80'
+      - '80:80' # Do not forget to change RAILS_PORT above when changing this
     volumes:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
@@ -67,6 +69,14 @@ services:
     image: postgres:10.2
     ports:
       - '5432:5432'
+
+  # Usage: docker-compose up redis
+  # Other services depend on this. It shouldn't be run by itself
+  redis:
+    image: redis:3.2.11
+    ports:
+      - '6379:6379' # Do not forget to change REDIS_PORT when changing this
+
 volumes:
   # Cache gems from 'bundler' commands (install, update, etc...)
   gems:
