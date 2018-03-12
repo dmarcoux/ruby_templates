@@ -11,8 +11,17 @@ services:
     ports:
       - '80:80'
     volumes:
-      - .:/app
-      - gems:/gems # Use cache from gems volume
+      - .:/app # Same as $WORKDIR from Dockerfile
+      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
+
+  # Usage: docker-compose up bundle
+  # For convenience, run it whenever changing the Gemfile
+  bundle:
+    build: .
+    command: bash -c "(bundle check || bundle install)"
+    volumes:
+      - .:/app # Same as $WORKDIR from Dockerfile
+      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
 
   # Usage: docker-compose up database
   # Other services depend on this. It shouldn't be run by itself
@@ -25,5 +34,5 @@ services:
     ports:
       - '5432:5432'
 volumes:
-  # Cache gems from 'bundle install'
+  # Cache gems from 'bundler' commands (install, update, etc...)
   gems:
