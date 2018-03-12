@@ -1,4 +1,6 @@
 version: '3.4'
+# Usage for any service
+#   - Run shell inside container: docker-compose run --rm --service-ports SERVICE_NAME bash
 services:
   # Usage: docker-compose up rails
   # Runs a rails server, access it at localhost:RAILS_PORT (the value of the environment variable RAILS_PORT is below)
