@@ -23,6 +23,16 @@ services:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
 
+  # Usage:
+  #   - Run all specs: docker-compose up specs
+  #   - Run specific specs: docker-compose run specs bash -c 'bundle exec rspec spec/models/user_spec.rb:12'
+  specs:
+    build: .
+    command: bash -c "(bundle check || bundle install) && bundle exec rspec"
+    volumes:
+      - .:/app # Same as $WORKDIR from Dockerfile
+      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
+
   # Usage: docker-compose up database
   # Other services depend on this. It shouldn't be run by itself
   database:
