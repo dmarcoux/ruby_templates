@@ -25,5 +25,5 @@ Each *Docker* container has usage examples in
 ### TODO
 
 - Add skeleton *Rails* app
-- Add more services in *Docker Compose* setup (redis, etc...)
+- Add more services in *Docker Compose* setup (rubocop, etc...)
 - Scale *Docker Compose* setup (use `scale` for `rails` service)
