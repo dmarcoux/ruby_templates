@@ -1,0 +1,34 @@
+# https://circleci.com/docs/2.0/language-ruby/
+version: 2
+jobs:
+  build:
+    parallelism: 3
+    docker:
+      # https://hub.docker.com/r/circleci/ruby
+      - image: circleci/ruby:2.6.0-node
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - ruby_templates-{{ checksum "Gemfile.lock" }}
+            - ruby_templates
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: ruby_templates-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Linters
+          command: bundle exec rubocop --fail-fast --display-style-guide --fail-level convention
