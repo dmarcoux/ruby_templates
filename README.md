@@ -16,9 +16,3 @@ Minimal setup for a *Rails* application with the following features:
 
 Each *Docker* container has usage examples in
 [docker-compose.yml](docker-compose.yml).
-
-### TODO
-
-- Add skeleton *Rails* app
-- Add more services in *Docker Compose* setup (rubocop, etc...)
-- Scale *Docker Compose* setup (use `scale` for `rails` service)
