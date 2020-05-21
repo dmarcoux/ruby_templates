@@ -1,4 +1,4 @@
-FROM ruby:2.5.0
+FROM ruby:2.7.1
 MAINTAINER Dany Marcoux
 
 # Enforce C.UTF-8 encoding, otherwise it is inherited from the host machine
