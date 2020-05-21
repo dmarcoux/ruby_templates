@@ -2,11 +2,6 @@
 
 Templates for common files/configs I use in Ruby projects.
 
-### Rubocop
-
-Configured with `.rubocop.yml` and to be imported into other projects as
-explained in the file itself.
-
 ### setup_example_files.sh
 
 Quickly setup example files under `config/` by running `./setup_example_files.sh`
