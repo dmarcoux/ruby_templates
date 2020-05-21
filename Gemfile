@@ -1,7 +1,28 @@
 source "https://rubygems.org"
 
 # Full-stack web framework
-gem 'rails', '5.1.5'
+# gem 'rails'
+# Ruby interface to databases
+# gem 'pg' # PostgreSQL
+# gem 'sqlite3' # SQLite3
+# Catch unsafe migrations in development
+# gem 'strong_migrations'
 
-# Ruby interface to PostgreSQL
-gem 'pg', '1.0.0'
+group :development, :test
+  # Behaviour Driven Development for Ruby
+  # gem 'rspec'
+  # Behaviour Driven Development for Rails
+  # gem 'rspec-rails'
+  # Linter for Ruby
+  # gem 'rubocop', require: false
+  # Linter for Rails
+  # gem 'rubocop-rails', require: false
+  # Linter for RSpec
+  # gem 'rubocop-rspec', require: false
+  # Linter for performance checks in Ruby
+  # gem 'rubocop-performance', require: false
+  # Alternative to IRB (interactive Ruby)
+  # gem 'pry'
+  # Step-by-step debugging and stack navigation in Pry
+  # gem 'pry-byebug'
+end
