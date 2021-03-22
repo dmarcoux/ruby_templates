@@ -1,4 +1,5 @@
-FROM ruby:2.7.1
+# https://hub.docker.com/_/ruby
+FROM ruby:3.0.0
 MAINTAINER Dany Marcoux
 
 # Enforce C.UTF-8 encoding, otherwise it is inherited from the host machine
