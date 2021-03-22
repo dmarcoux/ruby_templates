@@ -1,9 +1,5 @@
 version: '3.4'
-# Usage for any service
-#   - Run shell inside container: docker-compose run --rm --service-ports SERVICE_NAME bash
 services:
-  # Usage: docker-compose up web_app
-  # Starts the web application. Access it at localhost:RAILS_PORT (the value of the environment variable RAILS_PORT is below)
   web_app:
     build:
       args:
@@ -13,7 +9,7 @@ services:
     # depends_on:
     #   - postgres
     environment:
-      - RAILS_PORT=80 # Do not forget to change ports below when changing this
+      - RAILS_PORT=3000 # Do not forget to change ports below when changing this
       - REDIS_HOST=redis # Name of the redis service
       - REDIS_PORT=6379 # Do not forget to change ports in redis service when changing this
     ports:
@@ -22,66 +18,21 @@ services:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
 
-  # Usage: docker-compose up bundle
-  # For convenience, run it whenever changing the Gemfile
-  bundle:
-    build: .
-    command: bash -c "(bundle check || bundle install)"
-    volumes:
-      - .:/app # Same as $WORKDIR from Dockerfile
-      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
-
-  # Usage:
-  #   - Run all specs: docker-compose up specs
-  #   - Run specific specs: docker-compose run specs bash -c 'bundle exec rspec spec/models/user_spec.rb:12'
-  specs:
-    build: .
-    command: bash -c "(bundle check || bundle install) && bundle exec rspec"
-    volumes:
-      - .:/app # Same as $WORKDIR from Dockerfile
-      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
-
-  # Usage: docker-compose up migrations
-  # Create and migrate the database for development and only load the schema for test
-  migrations:
-    build: .
-    command: bash -c "(bundle check || bundle install) && bundle exec rake db:create db:migrate && RAILS_ENV=test bundle exec rake db:test:load"
-    # TODO: Use database if needed (SQLite doesn't need this since it's installed directly in the container)
-    # depends_on:
-    #   - postgres
-    volumes:
-      - .:/app # Same as $WORKDIR from Dockerfile
-      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
-
-  # Usage: docker-compose up seeds
-  # Seeds the development database
-  seeds:
-    build: .
-    command: bash -c "(bundle check || bundle install) && bundle exec rake db:seed"
-    # TODO: Use database if needed (SQLite doesn't need this since it's installed directly in the container)
-    # depends_on:
-    #   - postgres
-    volumes:
-      - .:/app # Same as $WORKDIR from Dockerfile
-      - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
-
-  # Usage: docker-compose up postgres
   # Other services depend on this. It shouldn't be run by itself
-  postgres:
-    environment:
-      - POSTGRES_USER=postgres_user
-      - POSTGRES_PASSWORD=postgres_password
-      - POSTGRES_DB=database_dev
-    image: postgres:10.2
-    ports:
-      - '5432:5432'
+  # postgres:
+  #   environment:
+  #     - POSTGRES_USER=postgres_user
+  #     - POSTGRES_PASSWORD=postgres_password
+  #     - POSTGRES_DB=database_dev
+  #   image: postgres:10.2
+  #   ports:
+  #     - '5432:5432'
 
-  # Usage: docker-compose up redis
   # Other services depend on this. It shouldn't be run by itself
-  redis:
-    image: redis:3.2.11
-    ports:
-      - '6379:6379' # Do not forget to change REDIS_PORT when changing this
+  # redis:
+  #   image: redis:3.2.11
+  #   ports:
+  #     - '6379:6379' # Do not forget to change REDIS_PORT when changing this
 
 volumes:
   # Cache gems from 'bundler' commands (install, update, etc...)
