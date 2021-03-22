@@ -18,6 +18,16 @@ ENV WORK_DIR /app
 RUN mkdir -p $WORK_DIR
 WORKDIR $WORK_DIR
 
+ARG USER_ID=1000
+# Create a user with the same ID as the user building this Dockerfile
+RUN useradd --groups users --uid $USER_ID web_app_user
+# Add the user to the sudoers
+RUN echo 'web_app_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+# Set the user as the owner of the working directory
+RUN chown -R web_app_user $WORK_DIR
+# Everything after the following line will be executed as the new user
+USER web_app_user
+
 # Speed up bundle install
 ENV BUNDLE_JOBS 4
 

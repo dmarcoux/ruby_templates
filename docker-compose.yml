@@ -2,10 +2,13 @@ version: '3.4'
 # Usage for any service
 #   - Run shell inside container: docker-compose run --rm --service-ports SERVICE_NAME bash
 services:
-  # Usage: docker-compose up rails
-  # Runs a rails server, access it at localhost:RAILS_PORT (the value of the environment variable RAILS_PORT is below)
-  rails:
-    build: .
+  # Usage: docker-compose up web_app
+  # Starts the web application. Access it at localhost:RAILS_PORT (the value of the environment variable RAILS_PORT is below)
+  web_app:
+    build:
+      args:
+        USER_ID: 1000
+      context: .
     # TODO: Use database if needed (SQLite doesn't need this since it's installed directly in the container)
     # depends_on:
     #   - postgres
