@@ -21,7 +21,7 @@ WORKDIR $WORK_DIR
 
 ARG USER_ID=1000
 # Create a user with the same ID as the user building this Dockerfile
-RUN useradd --groups users --uid $USER_ID web_app_user
+RUN useradd --groups users --uid $USER_ID --home-dir /home/web_app_user --create-home web_app_user
 # Add the user to the sudoers
 RUN echo 'web_app_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # Set the user as the owner of the working directory
