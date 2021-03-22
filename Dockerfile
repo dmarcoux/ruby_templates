@@ -39,7 +39,7 @@ ENV BUNDLE_PATH /gems
 COPY . $WORK_DIR
 
 # Default value for the port of the Rails server, which can be overriden on build (with ARG) or at anytime (by setting the ENV variable)
-ARG port=80
+ARG port=3000
 ENV RAILS_PORT $port
 
 # Check if gems are installed, if not install them, then start the Rails server
