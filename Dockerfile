@@ -26,8 +26,6 @@ RUN useradd --groups users --uid $USER_ID --home-dir /home/web_app_user --create
 RUN echo 'web_app_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # Set the user as the owner of the working directory
 RUN chown -R web_app_user $WORK_DIR
-# Everything after the following line will be executed as the new user
-USER web_app_user
 
 # Speed up bundle install
 ENV BUNDLE_JOBS 4
@@ -41,6 +39,9 @@ COPY . $WORK_DIR
 # Default value for the port of the Rails server, which can be overriden on build (with ARG) or at anytime (by setting the ENV variable)
 ARG port=3000
 ENV RAILS_PORT $port
+
+# Everything after the following line will be executed as the new user
+USER web_app_user
 
 # Check if gems are installed, if not install them, then start the Rails server
 CMD (bundle check || bundle install) && bundle exec rails s -b 0.0.0.0 -p $RAILS_PORT
