@@ -13,7 +13,7 @@ services:
       - REDIS_HOST=redis # Name of the redis service
       - REDIS_PORT=6379 # Do not forget to change ports in redis service when changing this
     ports:
-      - '80:80' # Do not forget to change RAILS_PORT above when changing this
+      - '3000:3000' # Do not forget to change RAILS_PORT above when changing this
     volumes:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
