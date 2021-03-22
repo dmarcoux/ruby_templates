@@ -32,6 +32,9 @@ ENV BUNDLE_JOBS 4
 
 # Path where gems will be installed. It can be cached with volumes
 ENV BUNDLE_PATH /gems
+RUN mkdir -p $BUNDLE_PATH
+# Make $BUNDLE_PATH writable to the user
+RUN chown -R web_app_user $BUNDLE_PATH
 
 # Copy all files from the project into the container
 COPY . $WORK_DIR
