@@ -18,7 +18,7 @@ pickle-email-*.html
 !/log/.keep
 !/tmp/.keep
 
-# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+# CHANGEME: Comment out this rule if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
 config/master.key
 
@@ -26,7 +26,7 @@ config/master.key
 # config/secrets.yml
 
 # dotenv, dotenv-rails
-# TODO Comment out these rules if environment variables can be committed
+# CHANGEME: Comment out these rules if environment variables can be committed
 .env
 .env.*
 

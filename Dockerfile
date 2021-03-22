@@ -9,7 +9,7 @@ RUN apt-get update -qq
 
 # Install dependencies for the application
 RUN apt-get install -qq -y build-essential
-# TODO: Select one database
+# CHANGEME: Select one database and add the package(s) to the `apt-get install (...)` line above
 # postgres: libpq-dev
 # sqlite: sqlite3 libsqlite3-dev
 

@@ -5,7 +5,7 @@ services:
       args:
         USER_ID: 1000
       context: .
-    # TODO: Use database if needed (SQLite doesn't need this since it's installed directly in the container)
+    # CHANGEME: Use database if needed (SQLite doesn't need this since it's installed directly in the container)
     # depends_on:
     #   - postgres
     environment:
@@ -18,6 +18,7 @@ services:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
 
+  # CHANGEME: Uncomment service below or remove comment block
   # Other services depend on this. It shouldn't be run by itself
   # postgres:
   #   environment:
@@ -28,6 +29,7 @@ services:
   #   ports:
   #     - '5432:5432'
 
+  # CHANGEME: Uncomment service below or remove comment block
   # Other services depend on this. It shouldn't be run by itself
   # redis:
   #   image: redis:3.2.11
