@@ -30,5 +30,12 @@ Minimal setup for a *Rails* application with the following features:
 
 - Start the web application which is available at localhost:3000: `docker-compose up web_app`
 - Start shell inside the web application container: `docker-compose run --rm --service-ports web_app bash`
+- To generate a Rails project from scratch inside the container:
+    ```bash
+    # Install rails to be able to run `rails new`
+    gem install rails
+    # Generate Rails project as usual...
+    rails new my_app
+    ```
 - Run specific specs: `docker-compose run web_app bash -c 'bundle exec rspec spec/models/user_spec.rb:12'`
 - Create and migrate the database for development and only load the schema for test: `docker-compose run web_app bash -c 'bundle exec rake db:create db:migrate && RAILS_ENV=test bundle exec rake db:test:load'`
