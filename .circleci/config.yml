@@ -56,30 +56,25 @@ jobs:
       - run:
           name: Run specs
           command: bundle exec rspec spec
-  # TODO: Use bundler-audit
-  # audit_dependencies:
-  #   docker:
-  #     - <<: *ruby_image
-  #   steps:
-  #     - attach_workspace:
-  #         at: .
-  #     - run:
-  #         name: Set permissions for cache
-  #         command: |
-  #           sudo chown --recursive $(whoami):$(id --name --group) /usr/local/cargo
-  #     - restore_cache:
-  #         keys:
-  #           - cargo-audit-{{ arch }}
-  #     - run:
-  #         name: Install cargo-audit
-  #         command: cargo install cargo-audit
-  #     - save_cache:
-  #         paths:
-  #           - /usr/local/cargo
-  #         key: cargo-audit-{{ arch }}
-  #     - run:
-  #         name: Audit Cargo.lock files for crates with security vulnerabilities
-  #         command: cargo audit
+  audit_dependencies:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          keys:
+            - bundler-audit-{{ arch }}
+      - run:
+          name: Download ruby-advisory-db (which bundler-audit needs)
+          command: bundle exec bundle-audit download
+      - save_cache:
+          paths:
+            - ~/.local/share/ruby-advisory-db/
+          key: bundler-audit-{{ arch }}
+      - run:
+          name: Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
+          command: bundle exec bundle-audit check --no-update
 
 workflows:
   version: 2

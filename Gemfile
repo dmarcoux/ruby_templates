@@ -11,6 +11,8 @@ source "https://rubygems.org"
 # gem 'strong_migrations'
 
 group :development, :test do
+  # Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
+  gem "bundler-audit"
   # Behaviour Driven Development for Ruby
   gem "rspec"
   # # Behaviour Driven Development for Rails

@@ -8,6 +8,9 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     ast (2.4.2)
+    bundler-audit (0.8.0)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     concurrent-ruby (1.1.8)
     diff-lcs (1.4.4)
     i18n (1.8.9)
@@ -55,6 +58,7 @@ GEM
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
     ruby-progressbar (1.11.0)
+    thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
@@ -64,6 +68,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bundler-audit
   rspec
   rubocop
   rubocop-performance
