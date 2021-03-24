@@ -23,12 +23,6 @@ Templates for common files/configs I use in Ruby projects.
 
 Quickly setup example files under `config/` by running `./setup_example_files.sh`
 
-## Docker and Docker Compose
-
-Minimal setup for a *Rails* application with the following features:
-- Caching installation of gems within a *Docker* volume
-- *PostgreSQL* database
-
 ## [Dependabot](https://dependabot.com/)
 
 Automated dependency updates. Details in the [config](./.github/dependabot.yml).
@@ -37,6 +31,13 @@ Automated dependency updates. Details in the [config](./.github/dependabot.yml).
 
 Linters, specs and more.
 Details in the [config](./.circleci/config.yml).
+
+## Docker and Docker Compose
+
+Minimal setup for a *Rails* application with the following features:
+- Caching installation of gems within a *Docker* volume
+- *PostgreSQL* database
+- *Redis* in-memory database
 
 ### Usage
 
