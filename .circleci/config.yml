@@ -26,7 +26,7 @@ jobs:
             - bundler-cache-{{ checksum "Gemfile.lock" }}
             - bundler-cache
       - run:
-          name: Bundle Install
+          name: Install gems if needed
           command: bundle check || bundle install
       # Store bundle cache
       - save_cache:
