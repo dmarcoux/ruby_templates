@@ -66,8 +66,8 @@ jobs:
           keys:
             - bundler-audit-{{ arch }}
       - run:
-          name: Download ruby-advisory-db (which bundler-audit needs)
-          command: bundle exec bundle-audit download
+          name: Download or update (if it's already cached) ruby-advisory-db, which bundler-audit needs
+          command: bundle exec bundle-audit update
       - save_cache:
           paths:
             - ~/.local/share/ruby-advisory-db/
