@@ -8,3 +8,5 @@ updates:
       interval: "daily"
     labels:
       - "dependabot"
+    # CHANGEME: Remove the following line to activate Dependabot (this is only to prevent Dependabot from creating PRs in this template repository)
+    open-pull-requests-limit: 0
