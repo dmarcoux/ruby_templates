@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source "https://rubygems.org"
 
 # Full-stack web framework
@@ -15,12 +16,12 @@ group :development, :test do
 #   gem 'rspec-rails'
   # Linter for Ruby
   gem 'rubocop', require: false
-#   # Linter for Rails
-#   gem 'rubocop-rails', require: false
-#   # Linter for RSpec
-#   gem 'rubocop-rspec', require: false
-#   # Linter for performance checks in Ruby
-#   gem 'rubocop-performance', require: false
+  # Linter for Rails
+  gem 'rubocop-rails', require: false
+  # Linter for RSpec
+  gem 'rubocop-rspec', require: false
+  # Linter for performance checks in Ruby
+  gem 'rubocop-performance', require: false
 #   # Alternative to IRB (interactive Ruby)
 #   gem 'pry'
 #   # Step-by-step debugging and stack navigation in Pry

@@ -1,0 +1,30 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  CacheRootDirectory: tmp/rubocop_cache
+  Exclude:
+    - 'bin/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+  MaxFilesInCache: 4000
+  NewCops: enable
+  UseCache: true
+
+# https://web.archive.org/web/20200805104844if_/https://anti-pattern.com/always-use-double-quoted-strings-in-ruby
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/RedundantFetchBlock:
+  # With SafeForConstants
+  #
+  # # bad
+  # ENV.fetch(:key) { VALUE }
+  #
+  # # good
+  # ENV.fetch(:key, VALUE)
+  SafeForConstants: true
