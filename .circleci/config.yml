@@ -90,7 +90,7 @@ workflows:
             - checkout_code
       - run_specs:
           requires:
-            - checkout_code
+            - lint_code
       - audit_dependencies:
           requires:
-            - checkout_code
+            - lint_code
