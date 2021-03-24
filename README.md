@@ -16,6 +16,9 @@ Templates for common files/configs I use in Ruby projects.
 2. Search for `CHANGEME` in the newly created repository to adapt it to your
    needs.
 
+3. Remove `Gemfile.lock` since it's only in this repository to be able to test
+   the CircleCI configuration.
+
 ## setup_example_files.sh
 
 Quickly setup example files under `config/` by running `./setup_example_files.sh`

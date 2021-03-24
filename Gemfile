@@ -8,13 +8,13 @@ source "https://rubygems.org"
 # # Catch unsafe migrations in development
 # gem 'strong_migrations'
 
-# group :development, :test
-#   # Behaviour Driven Development for Ruby
-#   gem 'rspec'
+group :development, :test do
+  # Behaviour Driven Development for Ruby
+  gem 'rspec'
 #   # Behaviour Driven Development for Rails
 #   gem 'rspec-rails'
-#   # Linter for Ruby
-#   gem 'rubocop', require: false
+  # Linter for Ruby
+  gem 'rubocop', require: false
 #   # Linter for Rails
 #   gem 'rubocop-rails', require: false
 #   # Linter for RSpec
@@ -25,4 +25,4 @@ source "https://rubygems.org"
 #   gem 'pry'
 #   # Step-by-step debugging and stack navigation in Pry
 #   gem 'pry-byebug'
-# end
+end
