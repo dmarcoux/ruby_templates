@@ -1,34 +1,96 @@
-# https://circleci.com/docs/2.0/language-ruby/
+# https://circleci.com/docs/2.0/
 version: 2
+
+images:
+  - &ruby_image
+    # https://hub.docker.com/r/circleci/ruby
+    image: circleci/ruby:3.0.0-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+
 jobs:
-  build:
-    parallelism: 3
+  checkout_code:
     docker:
-      # https://hub.docker.com/r/circleci/ruby
-      - image: circleci/ruby:3.0.0-node
-        environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
-          BUNDLE_PATH: vendor/bundle
+      - <<: *ruby_image
     steps:
       - checkout
-
-      # Restore bundle cache
+      - run:
+          name: Output Ruby environment
+          command: ruby --version; bundler --version
+      # Restore bundler cache
       - restore_cache:
           keys:
-            - ruby_templates-{{ checksum "Gemfile.lock" }}
-            - ruby_templates
-
+            - bundler-cache-{{ checksum "Gemfile.lock" }}
+            - bundler-cache
       - run:
           name: Bundle Install
           command: bundle check || bundle install
-
       # Store bundle cache
       - save_cache:
-          key: ruby_templates-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  lint_code:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - attach_workspace:
+          at: .
       - run:
-          name: Linters
+          # RuboCop's cop severity: https://docs.rubocop.org/rubocop/configuration.html#severity
+          name: Lint Ruby code, failing on the first offense with a severity "convention" or worse
           command: bundle exec rubocop --fail-fast --display-style-guide --fail-level convention
+  run_specs:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run specs
+          command: bundle exec rspec spec
+  # TODO: Use bundler-audit
+  # audit_dependencies:
+  #   docker:
+  #     - <<: *ruby_image
+  #   steps:
+  #     - attach_workspace:
+  #         at: .
+  #     - run:
+  #         name: Set permissions for cache
+  #         command: |
+  #           sudo chown --recursive $(whoami):$(id --name --group) /usr/local/cargo
+  #     - restore_cache:
+  #         keys:
+  #           - cargo-audit-{{ arch }}
+  #     - run:
+  #         name: Install cargo-audit
+  #         command: cargo install cargo-audit
+  #     - save_cache:
+  #         paths:
+  #           - /usr/local/cargo
+  #         key: cargo-audit-{{ arch }}
+  #     - run:
+  #         name: Audit Cargo.lock files for crates with security vulnerabilities
+  #         command: cargo audit
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - checkout_code
+      - lint_code:
+          requires:
+            - checkout_code
+      - run_specs:
+          requires:
+            - checkout_code
+      - audit_dependencies:
+          requires:
+            - checkout_code
