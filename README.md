@@ -29,6 +29,15 @@ Minimal setup for a *Rails* application with the following features:
 - Caching installation of gems within a *Docker* volume
 - *PostgreSQL* database
 
+## [Dependabot](https://dependabot.com/)
+
+Automated dependency updates. Details in the [config](./.github/dependabot.yml).
+
+## [CircleCI](https://circleci.com/)
+
+Linters, specs and more.
+Details in the [config](./.circleci/config.yml).
+
 ### Usage
 
 - Start the web application which is available at localhost:3000: `docker-compose up web_app`
