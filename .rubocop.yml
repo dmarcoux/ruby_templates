@@ -15,9 +15,9 @@ AllCops:
   NewCops: enable
   UseCache: true
 
-# https://web.archive.org/web/20200805104844if_/https://anti-pattern.com/always-use-double-quoted-strings-in-ruby
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
+# It's unneeded to enforce this for all classes and modules
+Style/Documentation:
+  Enabled: false
 
 Style/RedundantFetchBlock:
   # With SafeForConstants
@@ -28,3 +28,7 @@ Style/RedundantFetchBlock:
   # # good
   # ENV.fetch(:key, VALUE)
   SafeForConstants: true
+
+# https://web.archive.org/web/20200805104844if_/https://anti-pattern.com/always-use-double-quoted-strings-in-ruby
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
