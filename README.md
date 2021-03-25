@@ -38,6 +38,7 @@ Minimal setup for a *Rails* application with the following features:
 - Caching installation of gems within a *Docker* volume
 - *PostgreSQL* database
 - *Redis* in-memory database
+- Keep command history for Bash, IRB and Pry (files created by a [rake task](./lib/tasks/development.rake))
 
 ### Usage
 

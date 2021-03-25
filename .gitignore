@@ -71,3 +71,8 @@ yarn-debug.log*
 
 # Ignore locally cached Rubocop remote config
 .rubocop-http*
+
+# Ignore history files which are mounted in Docker containers
+/docker-files/home/.bash_history
+/docker-files/home/.irb_history
+/docker-files/home/.pry_history

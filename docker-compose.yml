@@ -17,6 +17,11 @@ services:
     volumes:
       - .:/app # Same as $WORKDIR from Dockerfile
       - gems:/gems # Cache gems from 'bundler' commands (install, update, etc...) in gems volume
+      # Keep command history for Bash, IRB and Pry
+      - ./docker-files/home/.bash_history:/home/web_app_user/.bash_history
+      - ./docker-files/home/.irb_history:/home/web_app_user/.irb_history
+      - ./docker-files/home/.pry_history:/home/web_app_user/.pry_history
+      - ./docker-files/home/.irbrc:/home/web_app_user/.irbrc # Configure IRB
 
   # CHANGEME: Uncomment service below or remove comment block
   # Other services depend on this. It shouldn't be run by itself
