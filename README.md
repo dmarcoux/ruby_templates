@@ -42,7 +42,7 @@ Minimal setup for a *Rails* application with the following features:
 
 ### Usage
 
-- Start the web application which is available at localhost:3000: `docker-compose up web_app`
+- Start the web application which is available at http://localhost:3000: `docker-compose up web_app`
 - Start shell inside the web application container: `docker-compose run --rm --service-ports web_app bash`
 - To generate a Rails project from scratch inside the container:
     ```bash
