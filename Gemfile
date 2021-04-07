@@ -2,17 +2,24 @@
 
 source "https://rubygems.org"
 
+# # Ruby interface to PostgreSQL databases
+# gem "pg"
+# # A simple, robust and scalable authorization system
+# gem "pundit"
 # Full-stack web framework
 # gem "rails"
-# # Ruby interface to databases
-# gem "pg" # PostgreSQL
-# gem "sqlite3" # SQLite3
 # # Catch unsafe migrations in development
 # gem "strong_migrations"
+# # Ruby interface to SQLite3 databases
+# gem "sqlite3"
+# # Build reusable, testable & encapsulated view components in Ruby on Rails
+# gem "view_component", require: "view_component/engine"
 
 group :development, :test do
   # Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
   gem "bundler-audit"
+  # # Create fixtures (sample data) for tests
+  # gem "factory_bot_rails"
   # Behaviour Driven Development for Ruby
   gem "rspec"
   # # Behaviour Driven Development for Rails
@@ -30,3 +37,8 @@ group :development, :test do
   # # Step-by-step debugging and stack navigation in Pry
   # gem "pry-byebug"
 end
+
+# group :test do
+#   # Integration testing tool
+#   gem "capybara"
+# end
