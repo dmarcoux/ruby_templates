@@ -6,10 +6,24 @@ updates:
     schedule:
       # Every weekday, Monday to Friday, at 5am UTC
       interval: "daily"
+    # Don't forget to create this label. One of the official reds for the Ruby logo has this value #A91401
     labels:
-      - "dependabot"
+      - "Dependabot - Ruby"
     allow:
       # Update direct and indirect dependencies
+      - dependency-type: "all"
+    # CHANGEME: Remove the following line to activate Dependabot (this is only to prevent Dependabot from creating PRs in this template repository)
+    open-pull-requests-limit: 0
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      # Every weekday, Monday to Friday, at 5am UTC
+      interval: "daily"
+    # Don't forget to create this label. The official yellow value for the JavaScript logo is #F0DB4F
+    labels:
+      - "Dependabot - JavaScript"
+    allow:
+      # Update direct dependencies (indirect dependencies are not supported for NPM, so "all" only target direct dependencies)
       - dependency-type: "all"
     # CHANGEME: Remove the following line to activate Dependabot (this is only to prevent Dependabot from creating PRs in this template repository)
     open-pull-requests-limit: 0
