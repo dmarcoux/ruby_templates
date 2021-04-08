@@ -17,8 +17,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      # Every weekday, Monday to Friday, at 5am UTC
-      interval: "daily"
+      # Every Monday at 5am UTC (daily is just too much since some JavaScript dependencies are updated daily, it's just noise)
+      interval: "weekly"
     # Don't forget to create this label. The official yellow value for the JavaScript logo is #F0DB4F
     labels:
       - "Dependabot - JavaScript"
