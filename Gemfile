@@ -2,6 +2,8 @@
 
 source "https://rubygems.org"
 
+# # Agnostic pagination in plain Ruby... easy, powerful, fast and light
+# gem "pagy"
 # # Ruby interface to PostgreSQL databases
 # gem "pg"
 # # A simple, robust and scalable authorization system
