@@ -17,7 +17,7 @@ Templates for common files/configs I use in Ruby projects.
    needs.
 
 3. Remove `Gemfile.lock` since it's only in this repository to be able to test
-   the CircleCI configuration.
+   the GitHub Actions configuration.
 
 ## setup_example_files.sh
 
@@ -27,10 +27,9 @@ Quickly setup example files under `config/` by running `./setup_example_files.sh
 
 Automated dependency updates. Details in the [config](./.github/dependabot.yml).
 
-## [CircleCI](https://circleci.com/)
+## [GitHub Actions](https://docs.github.com/en/actions)
 
-Linters, specs and more.
-Details in the [config](./.circleci/config.yml).
+Linters, specs and more. Details in the files under [.github/workflows](./.github/workflows).
 
 ## Docker and Docker Compose
 
