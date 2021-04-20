@@ -1,0 +1,37 @@
+name: Audit dependencies
+
+# Running on the branch main and on all PRs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  audit_dependencies:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Restore ruby-advisory-db cache if possible. Cache ruby-advisory-db if the job succeeds. This is used by bundle-audit
+        uses: actions/cache@v2
+        env:
+          cache-name: cache_ruby-advisory-db
+        with:
+          # Details on how ruby-advisory-db is storing security advisories: https://github.com/rubysec/ruby-advisory-db#directory-structure
+          path: ~/.local/share/ruby-advisory-db/gems/
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/*.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+
+      - name: Download or update (if it's already cached) ruby-advisory-db, which bundler-audit needs
+        run: bundle exec bundle-audit update
+
+      - name: Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
+        run: bundle exec bundle-audit check --no-update

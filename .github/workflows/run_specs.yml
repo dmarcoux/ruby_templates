@@ -1,0 +1,23 @@
+name: Run specs
+
+# Running on the branch main and on all PRs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  run_specs:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run specs
+        run: bundle exec rspec
