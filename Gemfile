@@ -20,8 +20,8 @@ source "https://rubygems.org"
 group :development, :test do
   # Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
   gem "bundler-audit"
-  # # Create fixtures (sample data) for tests
-  # gem "factory_bot_rails"
+  # Create fixtures (sample data) for tests
+  gem "factory_bot_rails"
   # Behaviour Driven Development for Ruby
   gem "rspec"
   # # Behaviour Driven Development for Rails
