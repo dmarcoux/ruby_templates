@@ -1,0 +1,90 @@
+# https://circleci.com/docs/2.0/
+version: 2
+
+images:
+  - &ruby_image
+    # https://hub.docker.com/r/circleci/ruby
+    image: circleci/ruby:3.0.0-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_PATH: vendor/bundle
+      BUNDLE_RETRY: 3
+      RAILS_ENV: test
+
+jobs:
+  checkout_code:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - checkout
+      - run:
+          name: Output Ruby environment
+          command: ruby --version; bundler --version
+      - restore_cache:
+          keys:
+            - bundler-cache-{{ checksum "Gemfile.lock" }}
+            - bundler-cache-
+      - run:
+          name: Install gems if needed
+          command: bundle check || bundle install
+      - save_cache:
+          key: bundler-cache-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  lint_code:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          # RuboCop's cop severity: https://docs.rubocop.org/rubocop/configuration.html#severity
+          name: Lint Ruby code, failing on the first offense with a severity "convention" or worse
+          command: bundle exec rubocop --fail-fast --display-style-guide --fail-level convention
+  run_specs:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run specs
+          command: bundle exec rspec spec
+  audit_dependencies:
+    docker:
+      - <<: *ruby_image
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          keys:
+            - bundler-audit-{{ arch }}
+      - run:
+          name: Download or update (if it's already cached) ruby-advisory-db, which bundler-audit needs
+          command: bundle exec bundle-audit update
+      - save_cache:
+          paths:
+            - ~/.local/share/ruby-advisory-db/
+          key: bundler-audit-{{ arch }}
+      - run:
+          name: Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
+          command: bundle exec bundle-audit check --no-update
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - checkout_code
+      - lint_code:
+          requires:
+            - checkout_code
+      - run_specs:
+          requires:
+            - lint_code
+      - audit_dependencies:
+          requires:
+            - lint_code
