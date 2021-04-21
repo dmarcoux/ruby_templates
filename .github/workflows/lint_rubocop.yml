@@ -1,4 +1,4 @@
-name: Lint code
+name: Lint Ruby code
 
 # Running on the branch main and on all PRs
 on:
@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  lint_code:
+  lint_rubocop:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
