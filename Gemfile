@@ -17,6 +17,11 @@ source "https://rubygems.org"
 # # Build reusable, testable & encapsulated view components in Ruby on Rails
 # gem "view_component", require: "view_component/engine"
 
+# group :development do
+#   # Annotate ActiveRecord models with their current schema
+#   gem "annotate"
+# end
+
 group :development, :test do
   # Audit Gemfile.lock for vulnerable versions of gems and insecure gem sources (http://)
   gem "bundler-audit"
