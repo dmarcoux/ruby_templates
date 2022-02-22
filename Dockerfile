@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/ruby
-FROM ruby:3.0.0
+FROM ruby:3.1.1
 MAINTAINER Dany Marcoux
 
 # Enforce C.UTF-8 encoding, otherwise it is inherited from the host machine
@@ -16,7 +16,7 @@ RUN apt-get install -qq -y build-essential
 # redis (optional - nice to have for connecting directly to redis when debugging, it provides redis-cli): redis-tools
 
 # Set the directory of the application and switch to it
-ENV WORK_DIR /app
+ENV WORK_DIR /web_app
 RUN mkdir -p $WORK_DIR
 WORKDIR $WORK_DIR
 
@@ -37,8 +37,8 @@ RUN mkdir -p $BUNDLE_PATH
 # Make $BUNDLE_PATH writable to the user
 RUN chown -R web_app_user $BUNDLE_PATH
 
-# Copy all files from the project into the container
-COPY . $WORK_DIR
+# As the web_app_user in the users group, copy all files from the project into the container
+COPY --chown=web_app_user:users . $WORK_DIR
 
 # Default value for the port of the Rails server, which can be overriden on build (with ARG) or at anytime (by setting the ENV variable)
 ARG port=3000
@@ -47,5 +47,5 @@ ENV RAILS_PORT $port
 # Everything after the following line will be executed as the new user
 USER web_app_user
 
-# Check if gems are installed, if not install them, then start the Rails server
-CMD (bundle check || bundle install) && bundle exec rails s -b 0.0.0.0 -p $RAILS_PORT
+# Check if gems are installed, if not install them, then remove any stale PID before starting the Rails server
+CMD (bundle check || bundle install) && rm $WORK_DIR/tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p $RAILS_PORT
