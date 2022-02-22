@@ -39,7 +39,7 @@ services:
   # Other services depend on this. It shouldn't be run by itself
   # redis:
   #   # https://hub.docker.com/_/redis
-  #   image: redis:6.2.1
+  #   image: redis:6.2.6
   #   ports:
   #     - '6379:6379' # Do not forget to change REDIS_URL when changing this
 
