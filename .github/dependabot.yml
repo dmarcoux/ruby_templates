@@ -1,6 +1,14 @@
 # https://help.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      # Check for updates to GitHub Actions every week
+      interval: "weekly"
+    # Don't forget to create this label.
+    labels:
+      - "Dependabot - GitHub Actions"
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
