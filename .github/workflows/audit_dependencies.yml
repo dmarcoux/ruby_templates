@@ -22,13 +22,13 @@ jobs:
       - name: Restore ruby-advisory-db cache if possible. Cache ruby-advisory-db if the job succeeds. This is used by bundle-audit
         uses: actions/cache@v2
         env:
-          cache-name: cache_ruby-advisory-db
+          cache-name: cache_ruby-advisory-db-${{ runner.os }}-
         with:
           # Details on how ruby-advisory-db is storing security advisories: https://github.com/rubysec/ruby-advisory-db#directory-structure
           path: ~/.local/share/ruby-advisory-db/gems/
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/*.yml') }}
+          key: ${{ env.cache-name }}${{ hashFiles('**/*.yml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ env.cache-name }}
 
       - name: Download or update (if it's already cached) ruby-advisory-db, which bundler-audit needs
         run: bundle exec bundle-audit update
