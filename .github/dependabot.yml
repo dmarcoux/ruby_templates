@@ -6,17 +6,11 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
-    # Don't forget to create this label.
-    labels:
-      - "Dependabot - GitHub Actions"
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
       # Every weekday, Monday to Friday, at 5am UTC
       interval: "daily"
-    # Don't forget to create this label. One of the official reds for the Ruby logo has this value #A91401
-    labels:
-      - "Dependabot - Ruby"
     allow:
       # Update direct and indirect dependencies
       - dependency-type: "all"
@@ -27,9 +21,6 @@ updates:
     schedule:
       # Every Monday at 5am UTC (daily is just too much since some JavaScript dependencies are updated daily, it's just noise)
       interval: "weekly"
-    # Don't forget to create this label. The official yellow value for the JavaScript logo is #F0DB4F
-    labels:
-      - "Dependabot - JavaScript"
     allow:
       # Update direct dependencies (indirect dependencies are not supported for NPM, so "all" only target direct dependencies)
       - dependency-type: "all"
