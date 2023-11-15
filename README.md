@@ -32,6 +32,18 @@ Automated dependency updates. Details in the [config](./.github/dependabot.yml).
 
 Linters, specs and more. Details in the files under [.github/workflows](./.github/workflows).
 
+## nix-shell for Ruby
+
+Reproducible development environment for Ruby projects which relies on
+[Nix](https://github.com/NixOS/nix), a purely functional and cross-platform
+package manager.
+
+### Usage
+
+1. Copy [shell.nix](./shell.nix) at the root of your Ruby project.
+2. Add the content of [.gitignore](./.gitignore) to your own _.gitignore_.
+3. Start with `nix-shell --pure`.
+
 ## Docker and Docker Compose
 
 Minimal setup for a *Rails* application with the following features:
