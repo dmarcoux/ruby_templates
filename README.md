@@ -20,10 +20,6 @@ Templates for common files/configs I use in Ruby projects.
 3. Remove `Gemfile.lock` since it's only in this repository to be able to test
    the GitHub Actions configuration.
 
-## setup_example_files.sh
-
-Quickly setup example files under `config/` by running `./setup_example_files.sh`
-
 ## [Dependabot](https://dependabot.com/)
 
 Automated dependency updates. Details in the [config](./.github/dependabot.yml).
@@ -65,3 +61,7 @@ Minimal setup for a *Rails* application with the following features:
     ```
 - Run specific specs: `docker-compose run web_app bash -c 'bundle exec rspec spec/models/user_spec.rb:12'`
 - Create and migrate the database for development and only load the schema for test: `docker-compose run web_app bash -c 'bundle exec rake db:create db:migrate && RAILS_ENV=test bundle exec rake db:test:load'`
+
+## setup_example_files.sh
+
+Quickly setup example files under `config/` by running `./setup_example_files.sh`
