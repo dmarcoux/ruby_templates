@@ -20,7 +20,7 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
       - name: Restore ruby-advisory-db cache if possible. Cache ruby-advisory-db if the job succeeds. This is used by bundle-audit
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache_ruby-advisory-db-${{ runner.os }}-
         with:
